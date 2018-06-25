@@ -1,0 +1,1095 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MSLModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="10.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT_SETTINGS">
+          <Key>
+            <PropertyRef Name="AC_ACCOUNT" />
+            <PropertyRef Name="SQ_ACCOUNT_SETTING_VERSION" />
+          </Key>
+          <Property Name="AC_ACCOUNT" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="SQ_ACCOUNT_SETTING_VERSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_ACCOUNT_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="DS_ACCOUNT" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="AC_DEFAULT_IBAN" Type="varchar2" MaxLength="34" />
+          <Property Name="AM_CHEQUE_LIMIT" Type="number" Precision="13" Scale="2" />
+          <Property Name="DT_SETTING_VALID_FROM" Type="date" Nullable="false" />
+          <Property Name="DT_SETTING_VALID_TO" Type="date" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="date" Nullable="false" />
+          <Property Name="DT_VALID_TO" Type="date" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BALANCE">
+          <Key>
+            <PropertyRef Name="AC_ACCOUNT" />
+            <PropertyRef Name="AC_BALANCE_TYPE" />
+            <PropertyRef Name="AC_BALANCE_SUBTYPE" />
+            <PropertyRef Name="YD_BALANCE" />
+            <PropertyRef Name="MD_BALANCE" />
+          </Key>
+          <Property Name="AC_ACCOUNT" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="AC_BALANCE_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_BALANCE_SUBTYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="YD_BALANCE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MD_BALANCE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_INITIAL_DEBIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_FINAL_DEBIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_MONTH_DEBIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_INITIAL_CREDIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_FINAL_CREDIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_MONTH_CREDIT" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AC_CURRENCY" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="NI_TRANSACTION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_BALANCE_STATUS" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHEQUE">
+          <Key>
+            <PropertyRef Name="AC_CHEQUE_ACCOUNT_NUMBER" />
+            <PropertyRef Name="AC_CHEQUE_NUMBER" />
+            <PropertyRef Name="SQ_CHEQUE_VERSION" />
+            <PropertyRef Name="AC_CHEQUE_STATUS_MOTIVE" />
+          </Key>
+          <Property Name="AC_CHEQUE_ZIB" Type="varchar2" MaxLength="8" Nullable="false" />
+          <Property Name="AC_CHEQUE_ACCOUNT_NUMBER" Type="varchar2" MaxLength="11" Nullable="false" />
+          <Property Name="AC_CHEQUE_NUMBER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="SQ_CHEQUE_VERSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_CHEQUE" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AC_CURRENCY" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_ORIGINAL_CHEQUE_ZIB" Type="varchar2" MaxLength="8" />
+          <Property Name="AC_ORIGINAL_CHEQUE_ACCT_NUMBER" Type="varchar2" MaxLength="11" />
+          <Property Name="AC_ORIGINAL_CHEQUE_NUMBER" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_ORIGIN_CASHIER_ACCOUNT" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_DESTINATION_CASHIER_ACCOUNT" Type="varchar2" MaxLength="10" />
+          <Property Name="NI_CHEQUE_SUBSTITUTIONS" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_CHEQUE_STATUS" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_CHEQUE_STATUS_MOTIVE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="SQ_OBSERVATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="FG_CURRENT_VERSION" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="date" />
+          <Property Name="DT_VALID_TO" Type="date" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMISSION">
+          <Key>
+            <PropertyRef Name="SQ_COMMISSION" />
+            <PropertyRef Name="SQ_COMMISSION_VERSION" />
+          </Key>
+          <Property Name="SQ_COMMISSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_COMMISSION_VERSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMPANY" Type="varchar2" MaxLength="10" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMMISSION_TYPE" Type="varchar2" MaxLength="3" />
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_COMMISSION" Type="number" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="varchar2" MaxLength="3" />
+          <Property Name="SQ_OBSERVATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="DT_VALID_FROM" Type="date" />
+          <Property Name="DT_VALID_TO" Type="date" />
+          <Property Name="FG_CURRENT_VERSION" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COVER">
+          <Key>
+            <PropertyRef Name="SQ_COVER" />
+          </Key>
+          <Property Name="SQ_COVER" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COVER_TYPE" Type="varchar2" MaxLength="5" />
+          <Property Name="AC_COMPANY" Type="varchar2" MaxLength="10" />
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="AM_INSURED" Type="number" Precision="13" Scale="2" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OBSERVATION">
+          <Key>
+            <PropertyRef Name="SQ_OBSERVATION" />
+          </Key>
+          <Property Name="SQ_OBSERVATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_TABLE_NAME" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="AC_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="DS_OBSERVATION" Type="varchar2" MaxLength="240" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OPERATION">
+          <Key>
+            <PropertyRef Name="SQ_OPERATION" />
+          </Key>
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="varchar2" MaxLength="4" Nullable="false" />
+          <Property Name="DT_OPERATION" Type="date" Nullable="false" />
+          <Property Name="AC_OPERATION_STATUS" Type="varchar2" MaxLength="3" />
+          <Property Name="AM_OPERATION" Type="number" Precision="13" Scale="2" />
+          <Property Name="SQ_OBSERVATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POLICY_HOLDER">
+          <Key>
+            <PropertyRef Name="SQ_POLICY_HOLDER" />
+          </Key>
+          <Property Name="SQ_POLICY_HOLDER" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="DS_PARTNER_NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="AC_NIF" Type="varchar2" MaxLength="9" />
+          <Property Name="DT_BIRTH" Type="date" />
+          <Property Name="AC_POLICY_HOLDER_TYPE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_PROFESSION_CODE" Type="varchar2" MaxLength="5" />
+          <Property Name="DS_PROFESSION" Type="varchar2" MaxLength="20" />
+          <Property Name="DT_UNEMPLOYED" Type="date" />
+          <Property Name="AC_EMPLOYEE_CATEGORY" Type="varchar2" MaxLength="20" />
+          <Property Name="DS_ADDRESS" Type="varchar2" MaxLength="70" />
+          <Property Name="DS_LOCATION" Type="varchar2" MaxLength="70" />
+          <Property Name="DS_POSTAL_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_COUNTRY" Type="varchar2" MaxLength="2" />
+          <Property Name="AC_PHONE_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_PERSONAL_PHONE_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_FAX_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_EMAIL" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_FISCAL_DOCUMENT_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="DT_FISCAL_DOCUMENT" Type="date" />
+          <Property Name="AC_FICAL_DOCUMENT" Type="varchar2" MaxLength="20" />
+          <Property Name="DT_FISCAL_DOCUMENT_END" Type="date" />
+          <Property Name="AC_NATIONALITY" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_BANK" Type="varchar2" MaxLength="5" />
+          <Property Name="AC_OFFICE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_NIB" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_COLLECTION_USER_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_MANAGER_USER_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_ORIGIN_GROUP" Type="varchar2" MaxLength="20" />
+          <Property Name="NI_DRIVING_LICENSE" Type="number" Precision="20" Scale="0" />
+          <Property Name="DT_DRIVING_LICENSE" Type="varchar2" MaxLength="20" />
+          <Property Name="DT_DRIVING_LICENSE_END" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_DRIVING_LICENSE" Type="varchar2" MaxLength="20" />
+          <Property Name="DS_HISTORY" Type="varchar2" MaxLength="200" />
+          <Property Name="DS_OBSERVATION" Type="varchar2" MaxLength="200" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMPANY" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="varchar2" MaxLength="4" Nullable="false" />
+          <Property Name="AC_ORIGINAL_RECEIPT_NUMBER" Type="varchar2" MaxLength="25" Nullable="false" />
+          <Property Name="AC_RECEIPT_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_RECEIPT_SUBTYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="SQ_POLICY_HOLDER" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="DT_EMISSION" Type="date" Nullable="false" />
+          <Property Name="DT_DUE_DATE" Type="date" Nullable="false" />
+          <Property Name="DT_MATURITY_DATE" Type="date" Nullable="false" />
+          <Property Name="DT_CANCEL_POLICY" Type="date" />
+          <Property Name="AC_PREMIUM_PERIOD" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_BRANCH" Type="varchar2" MaxLength="7" Nullable="false" />
+          <Property Name="AC_PRODUCT" Type="varchar2" MaxLength="6" Nullable="false" />
+          <Property Name="DT_RISK_BEGIN" Type="date" />
+          <Property Name="DT_RISK_END" Type="date" />
+          <Property Name="AC_PROPOSAL_NUMBER" Type="varchar2" MaxLength="23" />
+          <Property Name="AC_BENEFITS" Type="varchar2" MaxLength="6" />
+          <Property Name="FG_GROUP_COLLECTION" Type="varchar2" MaxLength="1" />
+          <Property Name="AC_GROUP_POLICY" Type="varchar2" MaxLength="14" />
+          <Property Name="AC_LICENSE_PLATE" Type="varchar2" MaxLength="16" />
+          <Property Name="DT_WORK_BEGIN" Type="date" />
+          <Property Name="DT_WORK_END" Type="date" />
+          <Property Name="NI_WORK_DURATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="AM_RECEIPT_TOTAL" Type="number" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_SIMPLE_PREMIUM" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_COMERCIAL_PREMIUM" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_COMERCIAL_DISCOUNT" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_GREEN_CARD_COSTS" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_RECORD_COST" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_POLICY_COST" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_BONUS_MALUS" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_ASSISTANCE" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_SURCHARGE" Type="number" Precision="13" Scale="2" />
+          <Property Name="AM_PREMIUM_CORRECTION" Type="number" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_CLAIM_NUMBER" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_SUB_CLAIM_NUMBER" Type="varchar2" MaxLength="15" />
+          <Property Name="DT_CLAIM_OCCURRENCE" Type="date" />
+          <Property Name="DT_CLAIM_OPENING" Type="date" />
+          <Property Name="AC_CLAIM_DOCUMENT_NUMBER" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_IDS" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="FG_AGGREGATION" Type="number" Precision="1" Scale="0" />
+          <Property Name="AC_AGGREGATION_REFERENCE" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_ATM_ENTITY" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_ATM_REFERENCE" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_CTT_REFERENCE" Type="varchar2" MaxLength="50" />
+          <Property Name="FG_COLLECT_LETTER_SENT" Type="varchar2" MaxLength="1" />
+          <Property Name="NI_INSURED_OBJECTS" Type="number" Precision="5" Scale="0" />
+          <Property Name="DS_INSURED_OBJECT" Type="varchar2" MaxLength="100" />
+          <Property Name="AC_MANAGER_USER_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT_COLLECTION">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DS_ADDRESS" Type="varchar2" MaxLength="70" />
+          <Property Name="DS_POSTAL_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="DS_CITY_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="DS_COUNTY_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="AC_COUNTRY" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_COLLECT_LETTER_TYPE" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT_STATUS">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+            <PropertyRef Name="SQ_RECEIPT_VERSION" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_RECEIPT_VERSION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="varchar2" MaxLength="4" Nullable="false" />
+          <Property Name="AC_BRANCH" Type="varchar2" MaxLength="7" Nullable="false" />
+          <Property Name="AC_PRODUCT" Type="varchar2" MaxLength="6" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_ORIGINAL_PAYMENT_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_PAYMENT_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_CLAIM_NUMBER" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_RECEIPT_STATUS" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_RECEIPT_STATUS_MOTIVE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="SQ_OBSERVATION" Type="number" Precision="38" Scale="0" />
+          <Property Name="AC_OPERATION_ACCOUNT" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_IBAN" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_EXTERNAL_REFERENCE" Type="varchar2" MaxLength="10" />
+          <Property Name="FG_CURRENT_VERSION" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="date" Nullable="false" />
+          <Property Name="DT_VALID_TO" Type="date" Nullable="false" />
+          <Property Name="AC_COLLECTION_USER_CODE" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_BIC" Type="varchar2" MaxLength="11" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MSL.REFERENCE_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="REFERENCE_DATA">
+          <Key>
+            <PropertyRef Name="AC_LOGICAL_TABLE" />
+            <PropertyRef Name="AC_ELEMENT" />
+            <PropertyRef Name="DS_ELEMENT" />
+            <PropertyRef Name="AC_CREATION_USER" />
+            <PropertyRef Name="TS_CREATION" />
+            <PropertyRef Name="AC_LAST_UPDATE_USER" />
+            <PropertyRef Name="TS_LAST_UPDATE" />
+          </Key>
+          <Property Name="AC_LOGICAL_TABLE" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="AC_ELEMENT" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="DS_ELEMENT" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSACTION_DETAIL">
+          <Key>
+            <PropertyRef Name="SQ_TRANSACTION" />
+          </Key>
+          <Property Name="SQ_TRANSACTION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_ACCOUNT" Type="varchar2" MaxLength="10" />
+          <Property Name="AC_COMPANY" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_BALANCE_TYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_BALANCE_SUBTYPE" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="varchar2" MaxLength="4" Nullable="false" />
+          <Property Name="DT_TRANSACTION" Type="date" />
+          <Property Name="AC_CREDIT_DEBIT" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AM_TRANSACTION" Type="number" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="varchar2" MaxLength="3" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="AC_CLAIM_NUMBER" Type="varchar2" MaxLength="15" />
+          <Property Name="AC_ORIGINAL_RECEIPT_NUMBER" Type="varchar2" MaxLength="25" />
+          <Property Name="SQ_RECEIPT" Type="number" Precision="38" Scale="0" />
+          <Property Name="AC_CREATION_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_CREATION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MSLModelStoreContainer">
+          <EntitySet Name="ACCOUNT_SETTINGS" EntityType="Self.ACCOUNT_SETTINGS" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="BALANCE" EntityType="Self.BALANCE" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="CHEQUE" EntityType="Self.CHEQUE" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="COMMISSION" EntityType="Self.COMMISSION" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="COVER" EntityType="Self.COVER" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="OPERATION" EntityType="Self.OPERATION" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="POLICY_HOLDER" EntityType="Self.POLICY_HOLDER" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="RECEIPT" EntityType="Self.RECEIPT" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="RECEIPT_COLLECTION" EntityType="Self.RECEIPT_COLLECTION" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="RECEIPT_STATUS" EntityType="Self.RECEIPT_STATUS" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="TRANSACTION_DETAIL" EntityType="Self.TRANSACTION_DETAIL" Schema="MSL" store:Type="Tables" />
+          <EntitySet Name="REFERENCE_DATA" EntityType="Self.REFERENCE_DATA" store:Type="Tables" store:Schema="MSL">
+            <DefiningQuery>SELECT 
+"REFERENCE_DATA"."AC_LOGICAL_TABLE" AS "AC_LOGICAL_TABLE", 
+"REFERENCE_DATA"."AC_ELEMENT" AS "AC_ELEMENT", 
+"REFERENCE_DATA"."DS_ELEMENT" AS "DS_ELEMENT", 
+"REFERENCE_DATA"."AC_CREATION_USER" AS "AC_CREATION_USER", 
+"REFERENCE_DATA"."TS_CREATION" AS "TS_CREATION", 
+"REFERENCE_DATA"."AC_LAST_UPDATE_USER" AS "AC_LAST_UPDATE_USER", 
+"REFERENCE_DATA"."TS_LAST_UPDATE" AS "TS_LAST_UPDATE"
+FROM "MSL"."REFERENCE_DATA" "REFERENCE_DATA"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MSLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACCOUNT_SETTINGS">
+          <Key>
+            <PropertyRef Name="AC_ACCOUNT" />
+            <PropertyRef Name="SQ_ACCOUNT_SETTING_VERSION" />
+          </Key>
+          <Property Name="AC_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_ACCOUNT_SETTING_VERSION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_ACCOUNT_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_ACCOUNT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_DEFAULT_IBAN" Type="String" MaxLength="34" FixedLength="false" Unicode="false" />
+          <Property Name="AM_CHEQUE_LIMIT" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="DT_SETTING_VALID_FROM" Type="DateTime" Nullable="false" />
+          <Property Name="DT_SETTING_VALID_TO" Type="DateTime" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="DateTime" Nullable="false" />
+          <Property Name="DT_VALID_TO" Type="DateTime" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BALANCE">
+          <Key>
+            <PropertyRef Name="AC_ACCOUNT" />
+            <PropertyRef Name="AC_BALANCE_TYPE" />
+            <PropertyRef Name="AC_BALANCE_SUBTYPE" />
+            <PropertyRef Name="YD_BALANCE" />
+            <PropertyRef Name="MD_BALANCE" />
+          </Key>
+          <Property Name="AC_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BALANCE_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BALANCE_SUBTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YD_BALANCE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MD_BALANCE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_INITIAL_DEBIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_FINAL_DEBIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_MONTH_DEBIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_INITIAL_CREDIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_FINAL_CREDIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_MONTH_CREDIT" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AC_CURRENCY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NI_TRANSACTION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_BALANCE_STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHEQUE">
+          <Key>
+            <PropertyRef Name="AC_CHEQUE_ACCOUNT_NUMBER" />
+            <PropertyRef Name="AC_CHEQUE_NUMBER" />
+            <PropertyRef Name="SQ_CHEQUE_VERSION" />
+            <PropertyRef Name="AC_CHEQUE_STATUS_MOTIVE" />
+          </Key>
+          <Property Name="AC_CHEQUE_ZIB" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CHEQUE_ACCOUNT_NUMBER" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CHEQUE_NUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_CHEQUE_VERSION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_CHEQUE" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AC_CURRENCY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_ORIGINAL_CHEQUE_ZIB" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGINAL_CHEQUE_ACCT_NUMBER" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGINAL_CHEQUE_NUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGIN_CASHIER_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_DESTINATION_CASHIER_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NI_CHEQUE_SUBSTITUTIONS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_CHEQUE_STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CHEQUE_STATUS_MOTIVE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_OBSERVATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FG_CURRENT_VERSION" Type="Boolean" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="DateTime" />
+          <Property Name="DT_VALID_TO" Type="DateTime" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMISSION">
+          <Key>
+            <PropertyRef Name="SQ_COMMISSION" />
+            <PropertyRef Name="SQ_COMMISSION_VERSION" />
+          </Key>
+          <Property Name="SQ_COMMISSION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_COMMISSION_VERSION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMPANY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMMISSION_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AM_COMMISSION" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="SQ_OBSERVATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DT_VALID_FROM" Type="DateTime" />
+          <Property Name="DT_VALID_TO" Type="DateTime" />
+          <Property Name="FG_CURRENT_VERSION" Type="Boolean" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COVER">
+          <Key>
+            <PropertyRef Name="SQ_COVER" />
+          </Key>
+          <Property Name="SQ_COVER" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COVER_TYPE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COMPANY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="AM_INSURED" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OBSERVATION">
+          <Key>
+            <PropertyRef Name="SQ_OBSERVATION" />
+          </Key>
+          <Property Name="SQ_OBSERVATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_TABLE_NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_OBSERVATION" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OPERATION">
+          <Key>
+            <PropertyRef Name="SQ_OPERATION" />
+          </Key>
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DT_OPERATION" Type="DateTime" Nullable="false" />
+          <Property Name="AC_OPERATION_STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="AM_OPERATION" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="SQ_OBSERVATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POLICY_HOLDER">
+          <Key>
+            <PropertyRef Name="SQ_POLICY_HOLDER" />
+          </Key>
+          <Property Name="SQ_POLICY_HOLDER" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_PARTNER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AC_NIF" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="DT_BIRTH" Type="DateTime" />
+          <Property Name="AC_POLICY_HOLDER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_PROFESSION_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DS_PROFESSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DT_UNEMPLOYED" Type="DateTime" />
+          <Property Name="AC_EMPLOYEE_CATEGORY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DS_ADDRESS" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DS_LOCATION" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DS_POSTAL_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COUNTRY" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="AC_PHONE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_PERSONAL_PHONE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_FAX_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_FISCAL_DOCUMENT_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DT_FISCAL_DOCUMENT" Type="DateTime" />
+          <Property Name="AC_FICAL_DOCUMENT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DT_FISCAL_DOCUMENT_END" Type="DateTime" />
+          <Property Name="AC_NATIONALITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_BANK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AC_OFFICE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_NIB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COLLECTION_USER_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_MANAGER_USER_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGIN_GROUP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NI_DRIVING_LICENSE" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="DT_DRIVING_LICENSE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DT_DRIVING_LICENSE_END" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_DRIVING_LICENSE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DS_HISTORY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DS_OBSERVATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_COMPANY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_ORIGINAL_RECEIPT_NUMBER" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_RECEIPT_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_RECEIPT_SUBTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_POLICY_HOLDER" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DT_EMISSION" Type="DateTime" Nullable="false" />
+          <Property Name="DT_DUE_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DT_MATURITY_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DT_CANCEL_POLICY" Type="DateTime" />
+          <Property Name="AC_PREMIUM_PERIOD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BRANCH" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_PRODUCT" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DT_RISK_BEGIN" Type="DateTime" />
+          <Property Name="DT_RISK_END" Type="DateTime" />
+          <Property Name="AC_PROPOSAL_NUMBER" Type="String" MaxLength="23" FixedLength="false" Unicode="false" />
+          <Property Name="AC_BENEFITS" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="FG_GROUP_COLLECTION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AC_GROUP_POLICY" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="AC_LICENSE_PLATE" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DT_WORK_BEGIN" Type="DateTime" />
+          <Property Name="DT_WORK_END" Type="DateTime" />
+          <Property Name="NI_WORK_DURATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="AM_RECEIPT_TOTAL" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="AM_SIMPLE_PREMIUM" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_COMERCIAL_PREMIUM" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_COMERCIAL_DISCOUNT" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_GREEN_CARD_COSTS" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_RECORD_COST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_POLICY_COST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_BONUS_MALUS" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_ASSISTANCE" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_SURCHARGE" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AM_PREMIUM_CORRECTION" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CLAIM_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_SUB_CLAIM_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DT_CLAIM_OCCURRENCE" Type="DateTime" />
+          <Property Name="DT_CLAIM_OPENING" Type="DateTime" />
+          <Property Name="AC_CLAIM_DOCUMENT_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_IDS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FG_AGGREGATION" Type="Boolean" />
+          <Property Name="AC_AGGREGATION_REFERENCE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ATM_ENTITY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ATM_REFERENCE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CTT_REFERENCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FG_COLLECT_LETTER_SENT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="NI_INSURED_OBJECTS" Type="Int16" />
+          <Property Name="DS_INSURED_OBJECT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AC_MANAGER_USER_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT_COLLECTION">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DS_ADDRESS" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DS_POSTAL_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CITY_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DS_COUNTY_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COUNTRY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COLLECT_LETTER_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIPT_STATUS">
+          <Key>
+            <PropertyRef Name="SQ_RECEIPT" />
+            <PropertyRef Name="SQ_RECEIPT_VERSION" />
+          </Key>
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_RECEIPT_VERSION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BRANCH" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_PRODUCT" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGINAL_PAYMENT_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_PAYMENT_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CLAIM_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_RECEIPT_STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_RECEIPT_STATUS_MOTIVE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_OBSERVATION" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="AC_OPERATION_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_IBAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_EXTERNAL_REFERENCE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FG_CURRENT_VERSION" Type="Boolean" Nullable="false" />
+          <Property Name="DT_VALID_FROM" Type="DateTime" Nullable="false" />
+          <Property Name="DT_VALID_TO" Type="DateTime" Nullable="false" />
+          <Property Name="AC_COLLECTION_USER_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_BIC" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSACTION_DETAIL">
+          <Key>
+            <PropertyRef Name="SQ_TRANSACTION" />
+          </Key>
+          <Property Name="SQ_TRANSACTION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AC_COMPANY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BALANCE_TYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_BALANCE_SUBTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SQ_OPERATION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AC_OPERATION_TYPE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DT_TRANSACTION" Type="DateTime" />
+          <Property Name="AC_CREDIT_DEBIT" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AM_TRANSACTION" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="AC_CURRENCY" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_POLICY_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AC_CLAIM_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AC_ORIGINAL_RECEIPT_NUMBER" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SQ_RECEIPT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REFERENCE_DATA">
+          <Key>
+            <PropertyRef Name="AC_LOGICAL_TABLE" />
+            <PropertyRef Name="AC_ELEMENT" />
+            <PropertyRef Name="DS_ELEMENT" />
+            <PropertyRef Name="AC_CREATION_USER" />
+            <PropertyRef Name="TS_CREATION" />
+            <PropertyRef Name="AC_LAST_UPDATE_USER" />
+            <PropertyRef Name="TS_LAST_UPDATE" />
+          </Key>
+          <Property Name="AC_LOGICAL_TABLE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_ELEMENT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_ELEMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AC_CREATION_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_CREATION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="AC_LAST_UPDATE_USER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TS_LAST_UPDATE" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNT_SETTINGS" EntityType="Self.ACCOUNT_SETTINGS" />
+          <EntitySet Name="BALANCE" EntityType="Self.BALANCE" />
+          <EntitySet Name="CHEQUE" EntityType="Self.CHEQUE" />
+          <EntitySet Name="COMMISSION" EntityType="Self.COMMISSION" />
+          <EntitySet Name="COVER" EntityType="Self.COVER" />
+          <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" />
+          <EntitySet Name="OPERATION" EntityType="Self.OPERATION" />
+          <EntitySet Name="POLICY_HOLDER" EntityType="Self.POLICY_HOLDER" />
+          <EntitySet Name="RECEIPT" EntityType="Self.RECEIPT" />
+          <EntitySet Name="RECEIPT_COLLECTION" EntityType="Self.RECEIPT_COLLECTION" />
+          <EntitySet Name="RECEIPT_STATUS" EntityType="Self.RECEIPT_STATUS" />
+          <EntitySet Name="TRANSACTION_DETAIL" EntityType="Self.TRANSACTION_DETAIL" />
+          <EntitySet Name="REFERENCE_DATA" EntityType="Self.REFERENCE_DATA" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MSLModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ACCOUNT_SETTINGS">
+            <EntityTypeMapping TypeName="MSLModel.ACCOUNT_SETTINGS">
+              <MappingFragment StoreEntitySet="ACCOUNT_SETTINGS">
+                <ScalarProperty Name="AC_ACCOUNT" ColumnName="AC_ACCOUNT" />
+                <ScalarProperty Name="SQ_ACCOUNT_SETTING_VERSION" ColumnName="SQ_ACCOUNT_SETTING_VERSION" />
+                <ScalarProperty Name="AC_ACCOUNT_TYPE" ColumnName="AC_ACCOUNT_TYPE" />
+                <ScalarProperty Name="DS_ACCOUNT" ColumnName="DS_ACCOUNT" />
+                <ScalarProperty Name="AC_DEFAULT_IBAN" ColumnName="AC_DEFAULT_IBAN" />
+                <ScalarProperty Name="AM_CHEQUE_LIMIT" ColumnName="AM_CHEQUE_LIMIT" />
+                <ScalarProperty Name="DT_SETTING_VALID_FROM" ColumnName="DT_SETTING_VALID_FROM" />
+                <ScalarProperty Name="DT_SETTING_VALID_TO" ColumnName="DT_SETTING_VALID_TO" />
+                <ScalarProperty Name="DT_VALID_FROM" ColumnName="DT_VALID_FROM" />
+                <ScalarProperty Name="DT_VALID_TO" ColumnName="DT_VALID_TO" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BALANCE">
+            <EntityTypeMapping TypeName="MSLModel.BALANCE">
+              <MappingFragment StoreEntitySet="BALANCE">
+                <ScalarProperty Name="AC_ACCOUNT" ColumnName="AC_ACCOUNT" />
+                <ScalarProperty Name="AC_BALANCE_TYPE" ColumnName="AC_BALANCE_TYPE" />
+                <ScalarProperty Name="AC_BALANCE_SUBTYPE" ColumnName="AC_BALANCE_SUBTYPE" />
+                <ScalarProperty Name="YD_BALANCE" ColumnName="YD_BALANCE" />
+                <ScalarProperty Name="MD_BALANCE" ColumnName="MD_BALANCE" />
+                <ScalarProperty Name="AM_INITIAL_DEBIT" ColumnName="AM_INITIAL_DEBIT" />
+                <ScalarProperty Name="AM_FINAL_DEBIT" ColumnName="AM_FINAL_DEBIT" />
+                <ScalarProperty Name="AM_MONTH_DEBIT" ColumnName="AM_MONTH_DEBIT" />
+                <ScalarProperty Name="AM_INITIAL_CREDIT" ColumnName="AM_INITIAL_CREDIT" />
+                <ScalarProperty Name="AM_FINAL_CREDIT" ColumnName="AM_FINAL_CREDIT" />
+                <ScalarProperty Name="AM_MONTH_CREDIT" ColumnName="AM_MONTH_CREDIT" />
+                <ScalarProperty Name="AC_CURRENCY" ColumnName="AC_CURRENCY" />
+                <ScalarProperty Name="NI_TRANSACTION" ColumnName="NI_TRANSACTION" />
+                <ScalarProperty Name="AC_BALANCE_STATUS" ColumnName="AC_BALANCE_STATUS" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHEQUE">
+            <EntityTypeMapping TypeName="MSLModel.CHEQUE">
+              <MappingFragment StoreEntitySet="CHEQUE">
+                <ScalarProperty Name="AC_CHEQUE_ZIB" ColumnName="AC_CHEQUE_ZIB" />
+                <ScalarProperty Name="AC_CHEQUE_ACCOUNT_NUMBER" ColumnName="AC_CHEQUE_ACCOUNT_NUMBER" />
+                <ScalarProperty Name="AC_CHEQUE_NUMBER" ColumnName="AC_CHEQUE_NUMBER" />
+                <ScalarProperty Name="SQ_CHEQUE_VERSION" ColumnName="SQ_CHEQUE_VERSION" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AM_CHEQUE" ColumnName="AM_CHEQUE" />
+                <ScalarProperty Name="AC_CURRENCY" ColumnName="AC_CURRENCY" />
+                <ScalarProperty Name="AC_ORIGINAL_CHEQUE_ZIB" ColumnName="AC_ORIGINAL_CHEQUE_ZIB" />
+                <ScalarProperty Name="AC_ORIGINAL_CHEQUE_ACCT_NUMBER" ColumnName="AC_ORIGINAL_CHEQUE_ACCT_NUMBER" />
+                <ScalarProperty Name="AC_ORIGINAL_CHEQUE_NUMBER" ColumnName="AC_ORIGINAL_CHEQUE_NUMBER" />
+                <ScalarProperty Name="AC_ORIGIN_CASHIER_ACCOUNT" ColumnName="AC_ORIGIN_CASHIER_ACCOUNT" />
+                <ScalarProperty Name="AC_DESTINATION_CASHIER_ACCOUNT" ColumnName="AC_DESTINATION_CASHIER_ACCOUNT" />
+                <ScalarProperty Name="NI_CHEQUE_SUBSTITUTIONS" ColumnName="NI_CHEQUE_SUBSTITUTIONS" />
+                <ScalarProperty Name="AC_CHEQUE_STATUS" ColumnName="AC_CHEQUE_STATUS" />
+                <ScalarProperty Name="AC_CHEQUE_STATUS_MOTIVE" ColumnName="AC_CHEQUE_STATUS_MOTIVE" />
+                <ScalarProperty Name="SQ_OBSERVATION" ColumnName="SQ_OBSERVATION" />
+                <ScalarProperty Name="FG_CURRENT_VERSION" ColumnName="FG_CURRENT_VERSION" />
+                <ScalarProperty Name="DT_VALID_FROM" ColumnName="DT_VALID_FROM" />
+                <ScalarProperty Name="DT_VALID_TO" ColumnName="DT_VALID_TO" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMISSION">
+            <EntityTypeMapping TypeName="MSLModel.COMMISSION">
+              <MappingFragment StoreEntitySet="COMMISSION">
+                <ScalarProperty Name="SQ_COMMISSION" ColumnName="SQ_COMMISSION" />
+                <ScalarProperty Name="SQ_COMMISSION_VERSION" ColumnName="SQ_COMMISSION_VERSION" />
+                <ScalarProperty Name="AC_COMPANY" ColumnName="AC_COMPANY" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AC_COMMISSION_TYPE" ColumnName="AC_COMMISSION_TYPE" />
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="AM_COMMISSION" ColumnName="AM_COMMISSION" />
+                <ScalarProperty Name="AC_CURRENCY" ColumnName="AC_CURRENCY" />
+                <ScalarProperty Name="SQ_OBSERVATION" ColumnName="SQ_OBSERVATION" />
+                <ScalarProperty Name="DT_VALID_FROM" ColumnName="DT_VALID_FROM" />
+                <ScalarProperty Name="DT_VALID_TO" ColumnName="DT_VALID_TO" />
+                <ScalarProperty Name="FG_CURRENT_VERSION" ColumnName="FG_CURRENT_VERSION" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COVER">
+            <EntityTypeMapping TypeName="MSLModel.COVER">
+              <MappingFragment StoreEntitySet="COVER">
+                <ScalarProperty Name="SQ_COVER" ColumnName="SQ_COVER" />
+                <ScalarProperty Name="AC_COVER_TYPE" ColumnName="AC_COVER_TYPE" />
+                <ScalarProperty Name="AC_COMPANY" ColumnName="AC_COMPANY" />
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AM_INSURED" ColumnName="AM_INSURED" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OBSERVATION">
+            <EntityTypeMapping TypeName="MSLModel.OBSERVATION">
+              <MappingFragment StoreEntitySet="OBSERVATION">
+                <ScalarProperty Name="SQ_OBSERVATION" ColumnName="SQ_OBSERVATION" />
+                <ScalarProperty Name="AC_TABLE_NAME" ColumnName="AC_TABLE_NAME" />
+                <ScalarProperty Name="AC_TYPE" ColumnName="AC_TYPE" />
+                <ScalarProperty Name="DS_OBSERVATION" ColumnName="DS_OBSERVATION" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPERATION">
+            <EntityTypeMapping TypeName="MSLModel.OPERATION">
+              <MappingFragment StoreEntitySet="OPERATION">
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AC_OPERATION_TYPE" ColumnName="AC_OPERATION_TYPE" />
+                <ScalarProperty Name="DT_OPERATION" ColumnName="DT_OPERATION" />
+                <ScalarProperty Name="AC_OPERATION_STATUS" ColumnName="AC_OPERATION_STATUS" />
+                <ScalarProperty Name="AM_OPERATION" ColumnName="AM_OPERATION" />
+                <ScalarProperty Name="SQ_OBSERVATION" ColumnName="SQ_OBSERVATION" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLICY_HOLDER">
+            <EntityTypeMapping TypeName="MSLModel.POLICY_HOLDER">
+              <MappingFragment StoreEntitySet="POLICY_HOLDER">
+                <ScalarProperty Name="SQ_POLICY_HOLDER" ColumnName="SQ_POLICY_HOLDER" />
+                <ScalarProperty Name="AC_POLICY_NUMBER" ColumnName="AC_POLICY_NUMBER" />
+                <ScalarProperty Name="DS_PARTNER_NAME" ColumnName="DS_PARTNER_NAME" />
+                <ScalarProperty Name="AC_NIF" ColumnName="AC_NIF" />
+                <ScalarProperty Name="DT_BIRTH" ColumnName="DT_BIRTH" />
+                <ScalarProperty Name="AC_POLICY_HOLDER_TYPE" ColumnName="AC_POLICY_HOLDER_TYPE" />
+                <ScalarProperty Name="AC_PROFESSION_CODE" ColumnName="AC_PROFESSION_CODE" />
+                <ScalarProperty Name="DS_PROFESSION" ColumnName="DS_PROFESSION" />
+                <ScalarProperty Name="DT_UNEMPLOYED" ColumnName="DT_UNEMPLOYED" />
+                <ScalarProperty Name="AC_EMPLOYEE_CATEGORY" ColumnName="AC_EMPLOYEE_CATEGORY" />
+                <ScalarProperty Name="DS_ADDRESS" ColumnName="DS_ADDRESS" />
+                <ScalarProperty Name="DS_LOCATION" ColumnName="DS_LOCATION" />
+                <ScalarProperty Name="DS_POSTAL_CODE" ColumnName="DS_POSTAL_CODE" />
+                <ScalarProperty Name="AC_COUNTRY" ColumnName="AC_COUNTRY" />
+                <ScalarProperty Name="AC_PHONE_NUMBER" ColumnName="AC_PHONE_NUMBER" />
+                <ScalarProperty Name="AC_PERSONAL_PHONE_NUMBER" ColumnName="AC_PERSONAL_PHONE_NUMBER" />
+                <ScalarProperty Name="AC_FAX_NUMBER" ColumnName="AC_FAX_NUMBER" />
+                <ScalarProperty Name="AC_EMAIL" ColumnName="AC_EMAIL" />
+                <ScalarProperty Name="AC_FISCAL_DOCUMENT_NUMBER" ColumnName="AC_FISCAL_DOCUMENT_NUMBER" />
+                <ScalarProperty Name="DT_FISCAL_DOCUMENT" ColumnName="DT_FISCAL_DOCUMENT" />
+                <ScalarProperty Name="AC_FICAL_DOCUMENT" ColumnName="AC_FICAL_DOCUMENT" />
+                <ScalarProperty Name="DT_FISCAL_DOCUMENT_END" ColumnName="DT_FISCAL_DOCUMENT_END" />
+                <ScalarProperty Name="AC_NATIONALITY" ColumnName="AC_NATIONALITY" />
+                <ScalarProperty Name="AC_BANK" ColumnName="AC_BANK" />
+                <ScalarProperty Name="AC_OFFICE" ColumnName="AC_OFFICE" />
+                <ScalarProperty Name="AC_NIB" ColumnName="AC_NIB" />
+                <ScalarProperty Name="AC_COLLECTION_USER_CODE" ColumnName="AC_COLLECTION_USER_CODE" />
+                <ScalarProperty Name="AC_MANAGER_USER_CODE" ColumnName="AC_MANAGER_USER_CODE" />
+                <ScalarProperty Name="AC_ORIGIN_GROUP" ColumnName="AC_ORIGIN_GROUP" />
+                <ScalarProperty Name="NI_DRIVING_LICENSE" ColumnName="NI_DRIVING_LICENSE" />
+                <ScalarProperty Name="DT_DRIVING_LICENSE" ColumnName="DT_DRIVING_LICENSE" />
+                <ScalarProperty Name="DT_DRIVING_LICENSE_END" ColumnName="DT_DRIVING_LICENSE_END" />
+                <ScalarProperty Name="AC_DRIVING_LICENSE" ColumnName="AC_DRIVING_LICENSE" />
+                <ScalarProperty Name="DS_HISTORY" ColumnName="DS_HISTORY" />
+                <ScalarProperty Name="DS_OBSERVATION" ColumnName="DS_OBSERVATION" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIPT">
+            <EntityTypeMapping TypeName="MSLModel.RECEIPT">
+              <MappingFragment StoreEntitySet="RECEIPT">
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="AC_COMPANY" ColumnName="AC_COMPANY" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AC_OPERATION_TYPE" ColumnName="AC_OPERATION_TYPE" />
+                <ScalarProperty Name="AC_ORIGINAL_RECEIPT_NUMBER" ColumnName="AC_ORIGINAL_RECEIPT_NUMBER" />
+                <ScalarProperty Name="AC_RECEIPT_TYPE" ColumnName="AC_RECEIPT_TYPE" />
+                <ScalarProperty Name="AC_RECEIPT_SUBTYPE" ColumnName="AC_RECEIPT_SUBTYPE" />
+                <ScalarProperty Name="SQ_POLICY_HOLDER" ColumnName="SQ_POLICY_HOLDER" />
+                <ScalarProperty Name="AC_POLICY_NUMBER" ColumnName="AC_POLICY_NUMBER" />
+                <ScalarProperty Name="DT_EMISSION" ColumnName="DT_EMISSION" />
+                <ScalarProperty Name="DT_DUE_DATE" ColumnName="DT_DUE_DATE" />
+                <ScalarProperty Name="DT_MATURITY_DATE" ColumnName="DT_MATURITY_DATE" />
+                <ScalarProperty Name="DT_CANCEL_POLICY" ColumnName="DT_CANCEL_POLICY" />
+                <ScalarProperty Name="AC_PREMIUM_PERIOD" ColumnName="AC_PREMIUM_PERIOD" />
+                <ScalarProperty Name="AC_BRANCH" ColumnName="AC_BRANCH" />
+                <ScalarProperty Name="AC_PRODUCT" ColumnName="AC_PRODUCT" />
+                <ScalarProperty Name="DT_RISK_BEGIN" ColumnName="DT_RISK_BEGIN" />
+                <ScalarProperty Name="DT_RISK_END" ColumnName="DT_RISK_END" />
+                <ScalarProperty Name="AC_PROPOSAL_NUMBER" ColumnName="AC_PROPOSAL_NUMBER" />
+                <ScalarProperty Name="AC_BENEFITS" ColumnName="AC_BENEFITS" />
+                <ScalarProperty Name="FG_GROUP_COLLECTION" ColumnName="FG_GROUP_COLLECTION" />
+                <ScalarProperty Name="AC_GROUP_POLICY" ColumnName="AC_GROUP_POLICY" />
+                <ScalarProperty Name="AC_LICENSE_PLATE" ColumnName="AC_LICENSE_PLATE" />
+                <ScalarProperty Name="DT_WORK_BEGIN" ColumnName="DT_WORK_BEGIN" />
+                <ScalarProperty Name="DT_WORK_END" ColumnName="DT_WORK_END" />
+                <ScalarProperty Name="NI_WORK_DURATION" ColumnName="NI_WORK_DURATION" />
+                <ScalarProperty Name="AM_RECEIPT_TOTAL" ColumnName="AM_RECEIPT_TOTAL" />
+                <ScalarProperty Name="AM_SIMPLE_PREMIUM" ColumnName="AM_SIMPLE_PREMIUM" />
+                <ScalarProperty Name="AM_COMERCIAL_PREMIUM" ColumnName="AM_COMERCIAL_PREMIUM" />
+                <ScalarProperty Name="AM_COMERCIAL_DISCOUNT" ColumnName="AM_COMERCIAL_DISCOUNT" />
+                <ScalarProperty Name="AM_GREEN_CARD_COSTS" ColumnName="AM_GREEN_CARD_COSTS" />
+                <ScalarProperty Name="AM_RECORD_COST" ColumnName="AM_RECORD_COST" />
+                <ScalarProperty Name="AM_POLICY_COST" ColumnName="AM_POLICY_COST" />
+                <ScalarProperty Name="AM_BONUS_MALUS" ColumnName="AM_BONUS_MALUS" />
+                <ScalarProperty Name="AM_ASSISTANCE" ColumnName="AM_ASSISTANCE" />
+                <ScalarProperty Name="AM_SURCHARGE" ColumnName="AM_SURCHARGE" />
+                <ScalarProperty Name="AM_PREMIUM_CORRECTION" ColumnName="AM_PREMIUM_CORRECTION" />
+                <ScalarProperty Name="AC_CURRENCY" ColumnName="AC_CURRENCY" />
+                <ScalarProperty Name="AC_CLAIM_NUMBER" ColumnName="AC_CLAIM_NUMBER" />
+                <ScalarProperty Name="AC_SUB_CLAIM_NUMBER" ColumnName="AC_SUB_CLAIM_NUMBER" />
+                <ScalarProperty Name="DT_CLAIM_OCCURRENCE" ColumnName="DT_CLAIM_OCCURRENCE" />
+                <ScalarProperty Name="DT_CLAIM_OPENING" ColumnName="DT_CLAIM_OPENING" />
+                <ScalarProperty Name="AC_CLAIM_DOCUMENT_NUMBER" ColumnName="AC_CLAIM_DOCUMENT_NUMBER" />
+                <ScalarProperty Name="AC_IDS" ColumnName="AC_IDS" />
+                <ScalarProperty Name="FG_AGGREGATION" ColumnName="FG_AGGREGATION" />
+                <ScalarProperty Name="AC_AGGREGATION_REFERENCE" ColumnName="AC_AGGREGATION_REFERENCE" />
+                <ScalarProperty Name="AC_ATM_ENTITY" ColumnName="AC_ATM_ENTITY" />
+                <ScalarProperty Name="AC_ATM_REFERENCE" ColumnName="AC_ATM_REFERENCE" />
+                <ScalarProperty Name="AC_CTT_REFERENCE" ColumnName="AC_CTT_REFERENCE" />
+                <ScalarProperty Name="FG_COLLECT_LETTER_SENT" ColumnName="FG_COLLECT_LETTER_SENT" />
+                <ScalarProperty Name="NI_INSURED_OBJECTS" ColumnName="NI_INSURED_OBJECTS" />
+                <ScalarProperty Name="DS_INSURED_OBJECT" ColumnName="DS_INSURED_OBJECT" />
+                <ScalarProperty Name="AC_MANAGER_USER_CODE" ColumnName="AC_MANAGER_USER_CODE" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIPT_COLLECTION">
+            <EntityTypeMapping TypeName="MSLModel.RECEIPT_COLLECTION">
+              <MappingFragment StoreEntitySet="RECEIPT_COLLECTION">
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="DS_ADDRESS" ColumnName="DS_ADDRESS" />
+                <ScalarProperty Name="DS_POSTAL_CODE" ColumnName="DS_POSTAL_CODE" />
+                <ScalarProperty Name="DS_CITY_NAME" ColumnName="DS_CITY_NAME" />
+                <ScalarProperty Name="DS_COUNTY_NAME" ColumnName="DS_COUNTY_NAME" />
+                <ScalarProperty Name="AC_COUNTRY" ColumnName="AC_COUNTRY" />
+                <ScalarProperty Name="AC_COLLECT_LETTER_TYPE" ColumnName="AC_COLLECT_LETTER_TYPE" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECEIPT_STATUS">
+            <EntityTypeMapping TypeName="MSLModel.RECEIPT_STATUS">
+              <MappingFragment StoreEntitySet="RECEIPT_STATUS">
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="SQ_RECEIPT_VERSION" ColumnName="SQ_RECEIPT_VERSION" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AC_OPERATION_TYPE" ColumnName="AC_OPERATION_TYPE" />
+                <ScalarProperty Name="AC_BRANCH" ColumnName="AC_BRANCH" />
+                <ScalarProperty Name="AC_PRODUCT" ColumnName="AC_PRODUCT" />
+                <ScalarProperty Name="AC_POLICY_NUMBER" ColumnName="AC_POLICY_NUMBER" />
+                <ScalarProperty Name="AC_ORIGINAL_PAYMENT_TYPE" ColumnName="AC_ORIGINAL_PAYMENT_TYPE" />
+                <ScalarProperty Name="AC_PAYMENT_TYPE" ColumnName="AC_PAYMENT_TYPE" />
+                <ScalarProperty Name="AC_CLAIM_NUMBER" ColumnName="AC_CLAIM_NUMBER" />
+                <ScalarProperty Name="AC_RECEIPT_STATUS" ColumnName="AC_RECEIPT_STATUS" />
+                <ScalarProperty Name="AC_RECEIPT_STATUS_MOTIVE" ColumnName="AC_RECEIPT_STATUS_MOTIVE" />
+                <ScalarProperty Name="SQ_OBSERVATION" ColumnName="SQ_OBSERVATION" />
+                <ScalarProperty Name="AC_OPERATION_ACCOUNT" ColumnName="AC_OPERATION_ACCOUNT" />
+                <ScalarProperty Name="AC_IBAN" ColumnName="AC_IBAN" />
+                <ScalarProperty Name="AC_EXTERNAL_REFERENCE" ColumnName="AC_EXTERNAL_REFERENCE" />
+                <ScalarProperty Name="FG_CURRENT_VERSION" ColumnName="FG_CURRENT_VERSION" />
+                <ScalarProperty Name="DT_VALID_FROM" ColumnName="DT_VALID_FROM" />
+                <ScalarProperty Name="DT_VALID_TO" ColumnName="DT_VALID_TO" />
+                <ScalarProperty Name="AC_COLLECTION_USER_CODE" ColumnName="AC_COLLECTION_USER_CODE" />
+                <ScalarProperty Name="AC_BIC" ColumnName="AC_BIC" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTION_DETAIL">
+            <EntityTypeMapping TypeName="MSLModel.TRANSACTION_DETAIL">
+              <MappingFragment StoreEntitySet="TRANSACTION_DETAIL">
+                <ScalarProperty Name="SQ_TRANSACTION" ColumnName="SQ_TRANSACTION" />
+                <ScalarProperty Name="AC_ACCOUNT" ColumnName="AC_ACCOUNT" />
+                <ScalarProperty Name="AC_COMPANY" ColumnName="AC_COMPANY" />
+                <ScalarProperty Name="AC_BALANCE_TYPE" ColumnName="AC_BALANCE_TYPE" />
+                <ScalarProperty Name="AC_BALANCE_SUBTYPE" ColumnName="AC_BALANCE_SUBTYPE" />
+                <ScalarProperty Name="SQ_OPERATION" ColumnName="SQ_OPERATION" />
+                <ScalarProperty Name="AC_OPERATION_TYPE" ColumnName="AC_OPERATION_TYPE" />
+                <ScalarProperty Name="DT_TRANSACTION" ColumnName="DT_TRANSACTION" />
+                <ScalarProperty Name="AC_CREDIT_DEBIT" ColumnName="AC_CREDIT_DEBIT" />
+                <ScalarProperty Name="AM_TRANSACTION" ColumnName="AM_TRANSACTION" />
+                <ScalarProperty Name="AC_CURRENCY" ColumnName="AC_CURRENCY" />
+                <ScalarProperty Name="AC_POLICY_NUMBER" ColumnName="AC_POLICY_NUMBER" />
+                <ScalarProperty Name="AC_CLAIM_NUMBER" ColumnName="AC_CLAIM_NUMBER" />
+                <ScalarProperty Name="AC_ORIGINAL_RECEIPT_NUMBER" ColumnName="AC_ORIGINAL_RECEIPT_NUMBER" />
+                <ScalarProperty Name="SQ_RECEIPT" ColumnName="SQ_RECEIPT" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REFERENCE_DATA">
+            <EntityTypeMapping TypeName="MSLModel.REFERENCE_DATA">
+              <MappingFragment StoreEntitySet="REFERENCE_DATA">
+                <ScalarProperty Name="AC_LOGICAL_TABLE" ColumnName="AC_LOGICAL_TABLE" />
+                <ScalarProperty Name="AC_ELEMENT" ColumnName="AC_ELEMENT" />
+                <ScalarProperty Name="DS_ELEMENT" ColumnName="DS_ELEMENT" />
+                <ScalarProperty Name="AC_CREATION_USER" ColumnName="AC_CREATION_USER" />
+                <ScalarProperty Name="TS_CREATION" ColumnName="TS_CREATION" />
+                <ScalarProperty Name="AC_LAST_UPDATE_USER" ColumnName="AC_LAST_UPDATE_USER" />
+                <ScalarProperty Name="TS_LAST_UPDATE" ColumnName="TS_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

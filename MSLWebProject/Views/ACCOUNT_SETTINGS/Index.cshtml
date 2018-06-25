@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MSLWebProject.Data.ACCOUNT_SETTINGS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AC_ACCOUNT_TYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DS_ACCOUNT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AC_DEFAULT_IBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AM_CHEQUE_LIMIT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_SETTING_VALID_FROM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_SETTING_VALID_TO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_VALID_FROM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_VALID_TO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AC_CREATION_USER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TS_CREATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AC_LAST_UPDATE_USER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TS_LAST_UPDATE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AC_ACCOUNT_TYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DS_ACCOUNT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AC_DEFAULT_IBAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AM_CHEQUE_LIMIT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_SETTING_VALID_FROM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_SETTING_VALID_TO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_VALID_FROM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_VALID_TO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AC_CREATION_USER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TS_CREATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AC_LAST_UPDATE_USER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TS_LAST_UPDATE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

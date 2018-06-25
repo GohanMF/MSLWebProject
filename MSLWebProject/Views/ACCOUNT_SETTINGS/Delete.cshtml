@@ -1,0 +1,120 @@
+﻿@model MSLWebProject.Data.ACCOUNT_SETTINGS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ACCOUNT_SETTINGS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AC_ACCOUNT_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AC_ACCOUNT_TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DS_ACCOUNT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DS_ACCOUNT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AC_DEFAULT_IBAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AC_DEFAULT_IBAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AM_CHEQUE_LIMIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AM_CHEQUE_LIMIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DT_SETTING_VALID_FROM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DT_SETTING_VALID_FROM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DT_SETTING_VALID_TO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DT_SETTING_VALID_TO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DT_VALID_FROM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DT_VALID_FROM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DT_VALID_TO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DT_VALID_TO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AC_CREATION_USER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AC_CREATION_USER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TS_CREATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TS_CREATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AC_LAST_UPDATE_USER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AC_LAST_UPDATE_USER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TS_LAST_UPDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TS_LAST_UPDATE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
